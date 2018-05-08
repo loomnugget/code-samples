@@ -1,0 +1,16 @@
+.main-navigation {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $brand-primary;
+  padding: 1em 0;
+
+  .item {
+    padding: 0 1em;
+    
+    &:first-child {
+      padding-left: 0;
+    }
+
+  }
+}

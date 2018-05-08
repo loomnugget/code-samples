@@ -9,7 +9,6 @@ class App extends Component {
   render () {
     return(
       <div className={css.app}>
-        <h1>Welcome</h1>
         <MainNavigation />
         <Main />
       </div>

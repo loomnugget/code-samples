@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Test from './Test';
+
 import Home from './Home';
+import WordProblem from './WordProblem';
+import MiddlewareTest from './MiddlewareTest';
 
 class Main extends Component {
   render () {
@@ -9,7 +11,8 @@ class Main extends Component {
       <div>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/test' component={Test}/>
+          <Route path='/word-problem' component={WordProblem}/>
+          <Route path='/api-middleware' component={MiddlewareTest}/>
         </Switch>
       </div>
     );

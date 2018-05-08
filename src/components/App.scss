@@ -1,7 +1,8 @@
 .app {
   color: $brand-primary;
+  padding: 2em;
 
-  h1, p {
-    font-family: $open-sans;
+  h1, h2, h3, h4, h5, p, a, {
+    font-family: $roboto;
   }
 }

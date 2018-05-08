@@ -1,14 +1,15 @@
 
 // App Colors
-$brand-red:             #c0392b; // dark red
+$brand-red:             #c0392b; // red
 $brand-green:           #2cc760; // bright green
 $brand-white:           #ffffff; // white
 
-$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-primary:         #131313 !default;
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 
-// Default Font
-$open-sans: "Open Sans", sans-serif !default;
+$roboto: 'Roboto', sans-serif !default;
+
+$open-sans: 'Open Sans', sans-serif;

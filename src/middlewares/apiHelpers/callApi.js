@@ -1,11 +1,9 @@
 import isObjectLike from 'lodash/isObjectLike';
-import { API_ROOT, HTTP_METHODS } from '../apiHelpers/requestHelpers';
+import { API_ROOT } from '../apiHelpers/requestHelpers';
 
 const callApi = callAPI => {
   let { endpoint, method, body, query } = callAPI;
   if(query) endpoint = `${endpoint}?${query}`;
-
-  if (typeof method === 'undefined') method = HTTP_METHODS.GET;
 
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
 
