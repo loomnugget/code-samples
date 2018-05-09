@@ -1,6 +1,6 @@
 import { NEW_MIDDLEWARE_CALL_API, actionWithPayload, actionWithError } from './apiHelpers/requestHelpers';
 import { showError } from '../actions/errorActions';
-import callApi from './apiHelpers/callApi';
+import { callApi } from './apiHelpers/callApi';
 import handleResponse from './apiHelpers/handleResponse';
 // import formatErrors from './apiHelpers/formatErrors';
 

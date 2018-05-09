@@ -64,6 +64,7 @@
     "eslint-plugin-react": "5.2.2",
     "eslint-watch": "2.1.13",
     "identity-obj-proxy": "3.0.0",
+    "redux-devtools-extension": "^2.13.2",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.12.1"
   },
