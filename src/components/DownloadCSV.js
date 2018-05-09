@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import Notification from './Notification';
 import PrimaryButton from './PrimaryButton';
 
 class DownloadCSV extends Component {
   handleDownload = () => {
     const { downloadCSV } = this.props;
-    downloadCSV();
+    downloadCSV()
+    .then(() => {})
+    .catch(() => {});
   }
 
   render () {
-    const { isLoading } = this.props;
+    const { isLoading, error } = this.props;
     return(
       <div>
+        {error && <Notification error={error}/>}
+
         <PrimaryButton
           disabled={isLoading}
           text="Test CSV Download"
@@ -23,6 +28,7 @@ class DownloadCSV extends Component {
 }
 
 DownloadCSV.propTypes = {
+  error: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   downloadCSV: PropTypes.func.isRequired
 };

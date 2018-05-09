@@ -45,6 +45,7 @@
     "recompose": "0.26.0",
     "redux": "3.7.2",
     "redux-form": "7.0.4",
+    "redux-thunk": "^2.2.0",
     "rest": "2.0.0",
     "rimraf": "2.5.4",
     "sass-loader": "4.0.0",

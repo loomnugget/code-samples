@@ -14,6 +14,20 @@ export default (state = initialState, action) => {
         isLoading: true
       };
 
+    case downloadActions.DOWNLOAD_CSV_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        isLoading: false
+      };
+
+    case downloadActions.DOWNLOAD_CSV_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false
+      };
+
     default:
       return state;
   }

@@ -1,14 +1,14 @@
-// import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { downloadTestCSV } from '../actions/csvActions';
 import DownloadCSV from './DownloadCSV';
 
-const mapDispatchToProps = (dispatch) => ({
-  downloadCSV: () => dispatch(downloadTestCSV)
+const mapDispatchToProps = dispatch => ({
+  downloadCSV: () => dispatch(downloadTestCSV())
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
+  error: state.downloads.error,
   isLoading: state.downloads.isLoading
 });
 
