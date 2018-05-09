@@ -4,7 +4,7 @@ import { clearErrorMessage } from '../actions/csvActions';
 import Notification from './Notification';
 
 const mapDispatchToProps = dispatch => ({
-  clearError: dispatch(clearErrorMessage)
+  clearError: () => dispatch(clearErrorMessage)
 });
 
 const mapStateToProps = state => ({

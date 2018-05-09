@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import css from './Notification.scss';
 
 class Notification extends Component {
@@ -10,7 +9,7 @@ class Notification extends Component {
       return (
         <div className={css.alert} role="alert">
           <div className={css.iconContainer} onClick={clearError} >
-            <FontAwesome name="rocket" className={css.icon}/>
+            <span className={`fa fa-close ${css.icon}`}/>
           </div>
           <div className={css.text}>{error}</div>
         </div>
@@ -21,7 +20,7 @@ class Notification extends Component {
 
 Notification.propTypes = {
   error: PropTypes.string,
-  clearError: PropTypes.func.isRequired
+  clearError: PropTypes.func
 };
 
 export default Notification;

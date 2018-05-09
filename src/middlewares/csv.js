@@ -1,8 +1,12 @@
 import { callApiCSV } from '../middlewares/apiHelpers/callApi';
 import { downloadCSVRequest, downloadCSVSuccess, downloadCSVFailure } from '../actions/csvActions';
 
+// CSV api actions have the following content:
+// { type: 'csvDownload', endpoint, filename }
+
 export default () => next => action => {
  if (action.type !== "csvDownload") return next(action);
+
  const { endpoint, filename } = action;
 
   next(downloadCSVRequest());
@@ -13,7 +17,7 @@ export default () => next => action => {
       next(downloadCSVFailure(error));
       return Promise.reject(error);
     }
-    
+
     next(downloadCSVSuccess());
 
     return response.blob().then(blob => {
@@ -30,3 +34,5 @@ export default () => next => action => {
     });
   });
 };
+
+// const contentType = response.headers.get('Content-Type');

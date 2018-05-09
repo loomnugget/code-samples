@@ -7,6 +7,7 @@ export const clearErrorMessage = {
   type: CLEAR_ERROR_MESSAGE
 };
 
+// All actions that are functions use thunk middleware 
 export const downloadCSVRequest = () => ({
   type: DOWNLOAD_CSV_REQUEST
 });

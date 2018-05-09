@@ -1,8 +1,7 @@
 @import '_variables.scss';
-@import '_fonts.scss';
-@import '~font-awesome/scss/font-awesome.scss';
-
-$fa-font-path: '~font-awesome/fonts';
+// @import '_fonts.scss';
+// @import './font-awesome/font-awesome.scss';
+// @import './font-awesome/fa-solid.scss';
 
 html {
   height: 100%;
@@ -10,4 +9,17 @@ html {
 
 body {
   min-height: 100%;
+}
+//
+// .close-icon {
+//   // @include fa-icon;
+//   // @extend .fas;
+//
+//   &:before {
+//     content: fa-content($fa-var-close);
+//   }
+// }
+
+.test {
+  color: $brand-red;
 }
