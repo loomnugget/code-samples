@@ -1,5 +1,26 @@
 .alert {
-  padding: 2em;
-  background-color: $brand-red;
+  background-color: lighten($brand-red, 10%);
   color: $brand-white;
+  margin-bottom: 1em;
+  border-radius: 3px;
+
+  .text {
+    padding: 1.5em;
+    margin-right: 20px;
+  }
+
+  .icon-container {
+    position: relative;
+
+    .icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+
 }

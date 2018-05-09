@@ -28,6 +28,13 @@ export default (state = initialState, action) => {
         isLoading: false
       };
 
+    case downloadActions.CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: null,
+        isLoading: false
+      };
+
     default:
       return state;
   }
