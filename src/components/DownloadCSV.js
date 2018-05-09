@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Notification from './Notification';
+import NotificationContainer from './NotificationContainer';
 import PrimaryButton from './PrimaryButton';
 
 class DownloadCSV extends Component {
@@ -12,10 +12,10 @@ class DownloadCSV extends Component {
   }
 
   render () {
-    const { isLoading, error } = this.props;
+    const { isLoading } = this.props;
     return(
       <div>
-        {error && <Notification error={error}/>}
+        <NotificationContainer />
 
         <PrimaryButton
           disabled={isLoading}

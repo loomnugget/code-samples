@@ -3,6 +3,7 @@ import { downloadCSVRequest, downloadCSVSuccess, downloadCSVFailure } from '../a
 
 // CSV api actions have the following content:
 // { type: 'csvDownload', endpoint, filename }
+// const contentType = response.headers.get('Content-Type');
 
 export default () => next => action => {
  if (action.type !== "csvDownload") return next(action);
@@ -13,7 +14,8 @@ export default () => next => action => {
 
   return callApiCSV(endpoint).then(response => {
     if (!response.ok) {
-      const error = response.statusText;
+      const error = `Error: ${response.statusText}`;
+
       next(downloadCSVFailure(error));
       return Promise.reject(error);
     }
@@ -34,5 +36,3 @@ export default () => next => action => {
     });
   });
 };
-
-// const contentType = response.headers.get('Content-Type');

@@ -1,26 +1,31 @@
 .alert {
-  background-color: lighten($brand-red, 10%);
   color: $brand-white;
   margin-bottom: 1em;
   border-radius: 3px;
+}
 
-  .text {
-    padding: 1.5em;
-    margin-right: 20px;
+.error {
+  background-color: lighten($brand-red, 10%);
+}
+
+.loading {
+  background-color: lighten($brand-green, 10%);
+}
+
+.text {
+  padding: 1.5em;
+  margin-right: 20px;
+}
+
+.icon-container {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
   }
-
-  .icon-container {
-    position: relative;
-
-    .icon {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 20px;
-      height: 20px;
-      padding: 5px;
-      cursor: pointer;
-    }
-  }
-
 }
