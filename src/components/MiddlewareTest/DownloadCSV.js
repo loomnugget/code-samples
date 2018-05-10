@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Notification from './Notification';
-import PrimaryButton from './PrimaryButton';
+import Notification from '../Notification';
+import PrimaryButton from '../PrimaryButton';
 
 class DownloadCSV extends Component {
   handleDownload = () => {

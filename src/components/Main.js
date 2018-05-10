@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
-import WordProblem from './WordProblem';
-import MiddlewareTest from './MiddlewareTest';
+import WordProblem from './WordProblem/WordProblem';
+import MiddlewareTest from './MiddlewareTest/MiddlewareTest';
 
 class Main extends Component {
   render () {

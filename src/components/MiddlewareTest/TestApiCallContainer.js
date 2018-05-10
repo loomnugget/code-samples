@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { testCallApi, clearAPIError } from '../actions/apiActions';
+import { testCallApi, clearAPIError } from '../../actions/apiActions';
 import TestApiCall from './TestApiCall';
 
 const mapDispatchToProps = dispatch => ({

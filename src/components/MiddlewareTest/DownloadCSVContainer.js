@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { downloadTestCSV, clearErrorMessage } from '../actions/csvActions';
+import { downloadTestCSV, clearErrorMessage } from '../../actions/csvActions';
 import DownloadCSV from './DownloadCSV';
 
 const mapDispatchToProps = dispatch => ({

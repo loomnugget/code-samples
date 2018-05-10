@@ -157,5 +157,5 @@ export const findMostCommonPhrases = paragraph => {
   const mostFrequentLargerPhrases = getMostFrequent(allLargerPhrases);
 
   const finalSmallPhrases = eliminateSmallPhrases(mostFrequentThreeWordPhrases, mostFrequentLargerPhrases);
-  return finalSmallPhrases;
+  return allThreeWordPhrases;
 };
