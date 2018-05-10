@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
-import { downloadTestCSV } from '../actions/csvActions';
+import { downloadTestCSV, clearErrorMessage } from '../actions/csvActions';
 import DownloadCSV from './DownloadCSV';
 
 const mapDispatchToProps = dispatch => ({
-  downloadCSV: () => dispatch(downloadTestCSV())
+  downloadCSV: () => dispatch(downloadTestCSV()),
+  clearError: () => dispatch(clearErrorMessage())
 });
 
 const mapStateToProps = state => ({

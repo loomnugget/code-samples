@@ -23,7 +23,8 @@ export default () => next => action => {
 
   // now we can call .then from a container or component to route or do other logic
   .catch(error => {
-    next(requestFailure(error));
+    console.log('error', error)
+    next(requestFailure("Error"));
     return Promise.reject(error);
   });
 };

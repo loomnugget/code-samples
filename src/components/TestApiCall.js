@@ -3,10 +3,10 @@ import { PropTypes } from 'prop-types';
 import Notification from './Notification';
 import PrimaryButton from './PrimaryButton';
 
-class DownloadCSV extends Component {
-  handleDownload = () => {
-    const { downloadCSV } = this.props;
-    downloadCSV()
+class TestApiCall extends Component {
+  handleCallApi = () => {
+    const { callApi } = this.props;
+    callApi()
     .then(() => {})
     .catch(() => {});
   }
@@ -16,21 +16,23 @@ class DownloadCSV extends Component {
     return(
       <div>
         <Notification isLoading={isLoading} error={error} clearError={clearError}/>
+
         <PrimaryButton
+          color="blue"
           disabled={isLoading}
-          text="Test CSV Download"
-          onClick={() => this.handleDownload()}
+          text="Test Api Call"
+          onClick={() => this.handleCallApi()}
         />
       </div>
     );
   }
 }
 
-DownloadCSV.propTypes = {
+TestApiCall.propTypes = {
   error: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   clearError: PropTypes.func.isRequired,
-  downloadCSV: PropTypes.func.isRequired
+  callApi: PropTypes.func.isRequired
 };
 
-export default DownloadCSV;
+export default TestApiCall;
