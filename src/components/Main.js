@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
-import WordProblem from './WordProblem/WordProblem';
+import Login from './Login/Login';
 import MiddlewareTest from './MiddlewareTest/MiddlewareTest';
 
 class Main extends Component {
@@ -11,7 +11,7 @@ class Main extends Component {
       <div>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/word-problem' component={WordProblem}/>
+          <Route path='/login' component={Login}/>
           <Route path='/api-middleware' component={MiddlewareTest}/>
         </Switch>
       </div>

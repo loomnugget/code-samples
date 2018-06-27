@@ -8,24 +8,26 @@ export const clearAPIError = () => ({
 });
 
 // All actions that are functions use thunk middleware
-export const startRequest = () => ({
-  type: REQUEST_START
+export const startRequest = (request_type) => ({
+  type: `${request_type}_REQUEST_START`
 });
 
-export const requestSuccess = payload => ({
-  type: REQUEST_SUCCESS,
+export const requestSuccess = (request_type, payload) => ({
+  type: `${request_type}_REQUEST_SUCCESS`,
   payload: payload
 });
 
-export const requestFailure = error => ({
-  type: REQUEST_FAILURE,
+export const requestFailure = (request_type, error) => ({
+  type: `${request_type}_REQUEST_FAILURE`,
   error: error
 });
 
 // async API actions are required to have a type of callAPI and an endpoint
 // can also have a body, query and method (if not provided, defaults to a GET request)
 export const TEST_RETRIEVE_CLIENTS = 'TEST_RETRIEVE_CLIENTS';
+
 export const testCallApi = () => ({
   type: 'callAPI',
-  endpoint: `clients`
+  request_type: TEST_RETRIEVE_CLIENTS,
+  endpoint: `users`
 });

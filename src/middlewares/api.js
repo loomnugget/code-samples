@@ -5,7 +5,7 @@ import { startRequest, requestSuccess, requestFailure } from '../actions/apiActi
 export default () => next => action => {
   if (action.type !== "callAPI") return next(action);
   // Request has started, so dispatch default start request action
-  next(startRequest());
+  next(startRequest(action.request_type));
 
   // make api call with action - note that return call here is important to return
   // the value of the promise chain
@@ -17,14 +17,14 @@ export default () => next => action => {
   // Source: https://javascript.info/promise-chaining
 
   .then(result => {
-    next(requestSuccess(result));
+    next(requestSuccess(action.request_type, result));
     return Promise.resolve(result);
   })
 
   // now we can call .then from a container or component to route or do other logic
   .catch(error => {
     error = `Error: ${error.message}`;
-    next(requestFailure(error));
+    next(requestFailure(action.request_type, error));
     return Promise.reject(error);
   });
 };
