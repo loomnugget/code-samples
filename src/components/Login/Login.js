@@ -8,36 +8,32 @@ import css from './Login.scss';
 
 class Login extends Component {
   render () {
-    // const { userAuthenticated } = this.props;
-    const { error, submitting, submitFailed } = this.props;
+    const { error, submitting, submitFailed, handleSubmit } = this.props;
+    const { authError } = this.props;
+    const errorMessage = (submitFailed && error) || authError;
 
     return(
       <div className={css.login}>
-        <form className={css.loginForm}>
+        <form className={css.loginForm} onSubmit={handleSubmit}>
+          <Field
+            name="email"
+            type="email"
+            placeholder="Email"
+            autoComplete="off"
+            component="input"
+            className={css.input}
+          />
 
-          <div className={css.formGroup}>
-            <Field
-              name="email"
-              type="email"
-              placeholder="Email"
-              className={css.input}
-              autoComplete="off"
-              component="input"
-            />
-          </div>
+          <Field
+            name="password"
+            type="password"
+            placeholder="Password"
+            autoComplete="off"
+            component="input"
+            className={css.input}
+          />
 
-          <div className={css.formGroup}>
-            <Field
-              name="password"
-              type="password"
-              placeholder="Password"
-              className={css.input}
-              autoComplete="off"
-              component="input"
-            />
-          </div>
-
-          {submitFailed && error && <FormNotification error={error} />}
+          {errorMessage && <FormNotification error={errorMessage} />}
 
           <SaveButton text="Log In" disabled={submitting}/>
         </form>

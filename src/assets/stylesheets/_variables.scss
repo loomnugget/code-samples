@@ -5,10 +5,15 @@ $brand-white:           #ffffff; // white
 
 $brand-primary:         #131313 !default;
 $brand-success:         #2cc760 !default;
-
-$brand-teal:            #34546B;
-$brand-light-teal:      #4D7C9E;
 $brand-light-grey:      #d9dee1;
+
+// Gradient1
+$brand-blue:             #6FD6FF;
+$brand-light-green:      #BFF098;
+
+$gradient1: linear-gradient(to right, $brand-blue, $brand-light-green);
+$gradient2: linear-gradient(to right, #00B7FF, #FFFFC7);
+
 
 $roboto: 'Roboto', sans-serif !default;
 $open-sans: 'Open Sans', sans-serif;

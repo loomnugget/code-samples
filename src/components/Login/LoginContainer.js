@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
 
 import { authenticateUser } from '../../actions/authActions';
-import { userAuthenticated } from '../../selectors/authSelectors';
+import { userAuthenticated, authError } from '../../selectors/authSelectors';
 import Login from './Login';
 
 const form = 'Login';
@@ -17,6 +17,7 @@ const submit = dispatch => ({email, password}) => (
 );
 
 const mapStateToProps = state => ({
+  authError: authError(state),
   userAuthenticated: userAuthenticated(state)
 });
 

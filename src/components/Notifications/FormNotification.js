@@ -7,7 +7,7 @@ class FormNotification extends Component {
     const { error } = this.props;
 
     return (
-      <div className={`${css.alert} ${css.loading}`} role="alert">
+      <div className={`${css.alert} ${css.error}`} role="alert">
         <div className={css.text}>{error}</div>
       </div>
     );
