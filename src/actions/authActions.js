@@ -5,7 +5,7 @@ export const authenticateUser = (email, password) => dispatch => (
   dispatch({
     type: 'callAPI',
     request_type: AUTHENTICATE_USER,
-    endpoint: '/',
+    endpoint: '/login',
     method: 'POST',
     body: {
       user: {

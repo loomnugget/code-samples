@@ -7,8 +7,8 @@ class MainNavigation extends Component {
     return(
       <div className={css.mainNavigation}>
         <p className={css.item}> Code Samples </p>
+        <Link className={css.item} to="/login">Login</Link>
         <Link className={css.item} to="/">Home</Link>
-        <Link className={css.item} to="/word-problem">Word Problem</Link>
         <Link className={css.item} to="/api-middleware">API Middleware</Link>
       </div>
     );

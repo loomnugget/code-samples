@@ -7,7 +7,7 @@ class MiddlewareTest extends Component {
   render () {
     return(
       <div className={css.middlewareTest}>
-        <h3>MiddlewareTest</h3>
+        <h3> Middleware Test </h3>
         <div className={css.btnContainer}>
           <div className={css.btn}>
             <DownloadCSVContainer />
