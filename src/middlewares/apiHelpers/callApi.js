@@ -1,5 +1,6 @@
 import isObjectLike from 'lodash/isObjectLike';
 import { API_ROOT } from '../apiHelpers/requestHelpers';
+import { loadAuthHeaders } from '../../session';
 
 const fullUrl = endpoint => {
   return (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
@@ -18,7 +19,8 @@ export const callApi = callAPI => {
     body,
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      ...loadAuthHeaders(),
     }
   };
   // fetch resolves to a reponse to the request (success or fail will always resolve the promise)

@@ -11,8 +11,12 @@ $brand-light-grey:      #d9dee1;
 $brand-blue:             #6FD6FF;
 $brand-light-green:      #BFF098;
 
+// Gradient2
+$color1:                 #00B7FF;
+$color2:                 #FFFFC7;
+
 $gradient1: linear-gradient(to right, $brand-blue, $brand-light-green);
-$gradient2: linear-gradient(to right, #00B7FF, #FFFFC7);
+$gradient2: linear-gradient(to right, $color1, $color2);
 
 
 $roboto: 'Roboto', sans-serif !default;

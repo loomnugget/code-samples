@@ -1,0 +1,19 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $brand-white;
+
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    width: 500px;
+    margin: auto;
+    text-align: center;
+  }
+}

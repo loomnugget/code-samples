@@ -23,6 +23,9 @@ export default () => next => action => {
 
   // now we can call .then from a container or component to route or do other logic
   .catch(error => {
+    // TODO: add error formatting
+    console.log('error', error)
+
     error = `Error: ${error.message}`;
     next(requestFailure(action.request_type, error));
     return Promise.reject(error);

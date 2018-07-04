@@ -4,7 +4,7 @@ export const signUpUser = userData => dispatch => (
   dispatch({
     type: 'callAPI',
     request_type: SIGN_UP_USER,
-    endpoint: '/sign_up',
+    endpoint: '/api/users',
     method: 'POST',
     body: {
       user: userData
@@ -18,7 +18,7 @@ export const updateUser = (userId, userData) => dispatch => (
   dispatch({
     type: 'callAPI',
     request_type: UPDATE_USER,
-    endpoint: `/users/${userId}`,
+    endpoint: `/api/users/${userId}`,
     method: 'PUT',
     body: {
       user: userData

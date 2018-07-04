@@ -5,14 +5,14 @@ import { reduxForm } from 'redux-form';
 
 import { authenticateUser } from '../../actions/authActions';
 import { userAuthenticated, authError } from '../../selectors/authSelectors';
-import Login from './Login';
+import LoginForm from './LoginForm';
 
 const form = 'Login';
 
-const submit = dispatch => ({email, password}) => (
+const submit = (dispatch, router) => ({email, password}) => (
   dispatch(authenticateUser(email, password))
   .then(() => {
-
+    router.push('/home');
   })
 );
 
@@ -21,14 +21,14 @@ const mapStateToProps = state => ({
   userAuthenticated: userAuthenticated(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit: submit(dispatch)
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onSubmit: submit(dispatch, ownProps.router)
 });
 
-const LoginContainer = compose(
+const LoginFormContainer = compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps ),
   reduxForm({ form })
-)(Login);
+)(LoginForm);
 
-export default LoginContainer;
+export default LoginFormContainer;
