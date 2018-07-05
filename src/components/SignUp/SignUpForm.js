@@ -15,39 +15,39 @@ class SignUpForm extends Component {
       <form className={css.signUpForm} onSubmit={handleSubmit}>
         <Field
           name="first_name"
+          label="First Name"
           type="text"
-          placeholder="First Name"
           component={FormField}
           validate={required}
         />
 
         <Field
           name="last_name"
+          label="Last Name"
           type="text"
-          placeholder="Last Name"
           component={FormField}
           validate={required}
         />
 
         <Field
           name="email"
+          label="Email"
           type="email"
-          placeholder="Email"
           component={FormField}
           validate={validateEmail}
         />
 
         <Field
           name="password"
+          label="Password"
           type="password"
-          placeholder="Password"
           component={FormField}
         />
 
         <Field
           name="password_confirmation"
+          label="Confirm Password"
           type="password"
-          placeholder="Confirm Password"
           component={FormField}
         />
 

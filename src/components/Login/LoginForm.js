@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Field, propTypes as reduxFormPropTypes } from 'redux-form';
 import PropTypes from 'prop-types';
 import SaveButton from '../Buttons/SaveButton';
+import FormField from '../Forms/FormField';
 import FormNotification from '../Notifications/FormNotification';
+import { required, validateEmail } from '../../validators';
 import css from './LoginForm.scss';
 
 class LoginForm extends Component {
@@ -15,20 +17,18 @@ class LoginForm extends Component {
       <form className={css.loginForm} onSubmit={handleSubmit}>
         <Field
           name="email"
+          label="Email"
           type="email"
-          placeholder="Email"
-          autoComplete="off"
-          component="input"
-          className={css.input}
+          component={FormField}
+          validate={validateEmail}
         />
 
         <Field
           name="password"
+          label="Password"
           type="password"
-          placeholder="Password"
-          autoComplete="off"
-          component="input"
-          className={css.input}
+          component={FormField}
+          validate={required}
         />
 
         {errorMessage && <FormNotification error={errorMessage} />}

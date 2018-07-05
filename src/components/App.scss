@@ -2,5 +2,9 @@
   color: $brand-primary;
   padding: 2em;
 
- * { font-family: $roboto }
+ * {
+   font-family: $roboto;
+   box-sizing: border-box;
+   font-size: 14px;
+ }
 }

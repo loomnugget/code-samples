@@ -1,21 +1,35 @@
 .form-group {
-  .label {
+  display: inline-block;
+  width: 100%;
 
+  .input, {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .label, .field-error {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .label {
+    color: $brand-blue;
+    margin-bottom: 3px;
   }
 
   .error-label {
     color: $brand-red;
   }
 
+  .field-error {
+    color: $brand-red;
+  }
+
   .input {
-    display: inline-block;
-    box-sizing: border-box; // Make input 100% of container
-    width: 100%;
+    margin-bottom: 15px;
     padding: 10px;
     outline: none;
     border-radius: 2px;
-    margin-bottom: 10px;
-    font-size: 14px;
     border: 1px solid $brand-light-grey;
   }
 
@@ -23,10 +37,4 @@
     border: 1px solid $brand-red;
   }
 
-  .field-error {
-    display: inline-block;
-    width: 100%;
-    margin-top: 5px;
-    color: $brand-red;
-  }
 }
