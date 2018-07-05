@@ -14,15 +14,3 @@ body {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
 }
-
-input {
-  display: inline-block;
-  box-sizing: border-box; // Make input 100% of container
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border-radius: 2px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  border: 1px solid $brand-light-grey;
-}

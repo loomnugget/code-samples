@@ -1,0 +1,32 @@
+.form-group {
+  .label {
+
+  }
+
+  .error-label {
+    color: $brand-red;
+  }
+
+  .input {
+    display: inline-block;
+    box-sizing: border-box; // Make input 100% of container
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid $brand-light-grey;
+  }
+
+  .error-input {
+    border: 1px solid $brand-red;
+  }
+
+  .field-error {
+    display: inline-block;
+    width: 100%;
+    margin-top: 5px;
+    color: $brand-red;
+  }
+}
