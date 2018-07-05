@@ -9,7 +9,7 @@ class LoginPage extends Component {
       <div className={css.loginPage}>
           <LoginFormContainer />
 
-        <div className={css.text}>
+        <div className={css.link}>
           Not a member? <Link to='/sign_up'> Sign Up </Link>
         </div>
       </div>
