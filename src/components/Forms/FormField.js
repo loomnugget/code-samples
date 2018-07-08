@@ -5,13 +5,14 @@ import css from './FormField.scss';
 class FormField extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     input: PropTypes.object.isRequired,
     meta: PropTypes.object.isRequired
   };
 
   render() {
-    const { input, label, meta: { touched, error } } = this.props;
+    const { input, type, label, meta: { touched, error } } = this.props;
     const hasError = touched && error;
     const labelClass = hasError ? `${css.label} ${css.errorLabel}` : css.label;
 
@@ -22,7 +23,7 @@ class FormField extends Component {
           {hasError && <strong><span className={css.fieldError}>{error}</span></strong>}
         </label>
 
-        <input {...input} className={`${css.input} ${hasError ? css.errorInput : ''}`}
+        <input {...input} type={type} className={`${css.input} ${hasError ? css.errorInput : ''}`}
         />
       </div>
     );

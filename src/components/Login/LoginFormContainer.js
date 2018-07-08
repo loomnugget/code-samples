@@ -9,11 +9,9 @@ import LoginForm from './LoginForm';
 
 const form = 'Login';
 
-const submit = (dispatch, router) => ({email, password}) => (
+const submit = (dispatch, history) => ({email, password}) => (
   dispatch(authenticateUser(email, password))
-  .then(() => {
-    router.push('/home');
-  })
+  .then(() => history.push('/home'))
 );
 
 const mapStateToProps = state => ({
@@ -22,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSubmit: submit(dispatch, ownProps.router)
+  onSubmit: submit(dispatch, ownProps.history)
 });
 
 const LoginFormContainer = compose(

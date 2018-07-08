@@ -1,6 +1,6 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 import { signUpUser } from '../../actions/userActions';
 import { userError } from '../../selectors/userSelectors';
@@ -22,18 +22,22 @@ const validate = values => {
   return errors;
 };
 
-const submit = dispatch => (values, router) => (
+const submit = (dispatch, history) => values => (
   dispatch(signUpUser(values))
-  .then(user => router.push(`/sign_up/${user.id}/success`))
+  .then(user => {
+    history.push(`/sign_up/${user.id}/success`);
+  })
 );
 
 const mapStateToProps = (state) => ({
   userError: userError(state)
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSubmit: submit(dispatch, ownProps.router)
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onSubmit: submit(dispatch, ownProps.history)
+  };
+};
 
 const SignUpFormContainer = compose(
   withRouter,

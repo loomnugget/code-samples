@@ -1,8 +1,9 @@
+@import '../_overlay.scss';
+
 .sign-up-page {
-  // Same as login page - share this
   .link {
     margin-top: 1em;
-    
+
     a {
       color: $brand-blue;
       text-decoration: none;

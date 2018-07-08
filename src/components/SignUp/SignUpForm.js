@@ -34,7 +34,7 @@ class SignUpForm extends Component {
           label="Email"
           type="email"
           component={FormField}
-          validate={validateEmail}
+          validate={required, validateEmail}
         />
 
         <Field

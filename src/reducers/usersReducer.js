@@ -16,12 +16,19 @@ export default (state = initialState, action) => {
         isLoading: true
       };
 
-    case `${userActions.SIGN_UP_USER}_REQUEST_SUCCESS`:
+    case `${userActions.SIGN_UP_USER}_REQUEST_SUCCESS`: {
+      const user = action.payload;
+
       return {
         ...state,
         error: null,
-        results: action.payload
+        isLoading: false,
+        results: {
+          ...state.results,
+          [user.id]: user
+        }
       };
+    }
 
     case `${userActions.SIGN_UP_USER}_REQUEST_FAILURE`:
       return {
