@@ -5,15 +5,15 @@ import PrimaryButton from '../Buttons/PrimaryButton';
 
 class TestApiCall extends Component {
   handleCallApi = () => {
-    const { callApi } = this.props;
-    callApi()
+    const { retrieveUsers } = this.props;
+    retrieveUsers()
     .then(() => {})
     .catch(() => {});
   }
 
   render () {
     const { isLoading, error, clearError } = this.props;
-    return(
+    return (
       <div>
         <Notification isLoading={isLoading} error={error} clearError={clearError}/>
 
@@ -32,7 +32,7 @@ TestApiCall.propTypes = {
   error: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   clearError: PropTypes.func.isRequired,
-  callApi: PropTypes.func.isRequired
+  retrieveUsers: PropTypes.func.isRequired
 };
 
 export default TestApiCall;

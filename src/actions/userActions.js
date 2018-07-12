@@ -25,3 +25,14 @@ export const updateUser = (userId, userData) => dispatch => (
     }
   })
 );
+
+export const RETRIEVE_USERS = 'RETRIEVE_USERS';
+
+export const retrieveUsers = () => dispatch => (
+  dispatch({
+    type: 'callAPI',
+    request_type: RETRIEVE_USERS,
+    endpoint: `api/users`,
+    method: 'GET'
+  })
+);

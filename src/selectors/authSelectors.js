@@ -6,4 +6,4 @@ export const authError = state => state.auth.error;
 
 export const isAuthenticating = state => state.auth.isAuthenticating;
 
-export const userAuthenticated = state => state.auth.isAuthenticated;
+export const userAuthenticated = state => state.auth.authenticated;

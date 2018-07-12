@@ -20,7 +20,7 @@ class LoginForm extends Component {
           label="Email"
           type="email"
           component={FormField}
-          validate={required, validateEmail}
+          validate={[required, validateEmail]}
         />
 
         <Field

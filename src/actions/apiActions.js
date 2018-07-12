@@ -21,13 +21,3 @@ export const requestFailure = (request_type, error) => ({
   type: `${request_type}_REQUEST_FAILURE`,
   error: error
 });
-
-// async API actions are required to have a type of callAPI and an endpoint
-// can also have a body, query and method (if not provided, defaults to a GET request)
-export const TEST_RETRIEVE_CLIENTS = 'TEST_RETRIEVE_CLIENTS';
-
-export const testCallApi = () => ({
-  type: 'callAPI',
-  request_type: TEST_RETRIEVE_CLIENTS,
-  endpoint: `users`
-});

@@ -11,7 +11,7 @@ const SignUpPage = () => {
           <SignUpFormContainer />
 
           <div className={css.link}>
-            <Link to='/' > Back To Login </Link>
+            <Link to='/login' > Back To Login </Link>
           </div>
 
         </div>

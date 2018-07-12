@@ -1,6 +1,6 @@
 import isObjectLike from 'lodash/isObjectLike';
 import { API_ROOT } from '../apiHelpers/requestHelpers';
-import { loadAuthHeaders } from '../../session';
+import { loadAuthHeaders } from '../../auth';
 
 const fullUrl = endpoint => {
   return (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;

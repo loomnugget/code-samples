@@ -1,6 +1,5 @@
-import { removeAuthHeaders } from '../session';
-
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+
 export const authenticateUser = (email, password) => dispatch => (
   dispatch({
     type: 'callAPI',
@@ -14,10 +13,13 @@ export const authenticateUser = (email, password) => dispatch => (
   })
 );
 
-export const LOG_OUT = 'LOG_OUT';
-export const logOut = () => dispatch => {
-  removeAuthHeaders();
-  return dispatch({
-    type: LOG_OUT
-  });
-};
+export const LOG_OUT_USER = 'LOG_OUT_USER';
+
+export const logOutUser = () => dispatch => (
+  dispatch({
+    type: 'callAPI',
+    request_type: LOG_OUT_USER,
+    endpoint: 'api/auth/sign_out',
+    method: 'DELETE'
+  })
+);

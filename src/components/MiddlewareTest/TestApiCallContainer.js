@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
-import { testCallApi, clearAPIError } from '../../actions/apiActions';
+import { retrieveUsers } from '../../actions/userActions';
+import { clearAPIError } from '../../actions/apiActions';
 import TestApiCall from './TestApiCall';
 
 const mapDispatchToProps = dispatch => ({
-  callApi: () => dispatch(testCallApi()),
+  retrieveUsers: () => dispatch(retrieveUsers()),
   clearError: () => dispatch(clearAPIError())
 });
 

@@ -19,4 +19,5 @@ class SignUpSuccess extends Component {
 SignUpSuccess.propTypes = {
   user: PropTypes.object.isRequired
 };
+
 export default SignUpSuccess;

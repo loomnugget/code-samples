@@ -1,7 +1,8 @@
-import { AUTHENTICATE_USER, LOG_OUT } from '../actions/authActions';
+import { AUTHENTICATE_USER, LOG_OUT_USER } from '../actions/authActions';
+import { hasAuthHeaders } from '../auth';
 
 const initialState = {
-  authenticated: false,
+  authenticated: hasAuthHeaders(),
   isAuthenticating: false,
   error: null
 };
@@ -31,7 +32,7 @@ export default (state = initialState, action) => {
         authenticated: false
       };
 
-    case LOG_OUT:
+    case LOG_OUT_USER:
       return {
         ...initialState,
         authenticated: false

@@ -11,7 +11,7 @@ const form = 'Login';
 
 const submit = (dispatch, history) => ({email, password}) => (
   dispatch(authenticateUser(email, password))
-  .then(() => history.push('/home'))
+  .then(() => history.push('/main/home'))
 );
 
 const mapStateToProps = state => ({
