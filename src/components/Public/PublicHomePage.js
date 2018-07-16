@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TestComponent from './TestComponent';
-import ErrorBoundary from '../ErrorBoundary';
+import ErrorBoundary from './ErrorBoundary';
 import css from './PublicHomePage.scss';
 
 class PublicHomePage extends Component {
