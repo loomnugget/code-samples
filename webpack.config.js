@@ -19,7 +19,8 @@ export default {
     './src/webpack-public-path',
     'whatwg-fetch',
     'webpack-hot-middleware/client?reload=false',
-    './src/index'
+    './src/index',
+    'babel-polyfill'
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {

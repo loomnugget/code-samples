@@ -9,6 +9,10 @@ class actionCable {
     this.channel = this.cable.subscriptions.create('ChatChannel');
  }
 
+ sendMessage = (message) => {
+   console.warn(`Message ${message}`);
+ };
+
   received = (data) => {
     console.log(`Received Data: ${data}`);
   };
