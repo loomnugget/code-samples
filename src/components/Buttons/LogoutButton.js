@@ -10,8 +10,12 @@ const LogoutButton = ({ text, onClick, disabled }) => {
   );
 };
 
+LogoutButton.defaultProps = {
+  disabled: false
+};
+
 LogoutButton.propTypes = {
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };

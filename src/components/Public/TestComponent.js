@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 class TestComponent extends Component {
-  componentWillMount() {
-    throw new Error('I crashed!');
-  }
+  // Uncomment to see error boundary message
+  // componentWillMount() {
+  //   throw new Error('I crashed!');
+  // }
 
   render () {
     return (

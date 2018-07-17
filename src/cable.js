@@ -1,12 +1,33 @@
 import ActionCable from 'actioncable';
+import config from './config';
 
-const WEBSOCKET_HOST = process.env.NODE_ENV === 'production'
-                         ? 'wss://<YOUR_SERVER_SITE>/cable'
-                         : 'ws://localhost:3000/cable';
+// const cable = ActionCable.createConsumer(config.WEBSOCKET_HOST);
 
+class actionCable {
+  constructor() {
+    this.cable = ActionCable.createConsumer(config.WEBSOCKET_HOST);
+    this.channel = this.cable.subscriptions.create('ChatChannel');
+ }
 
-const cable = ActionCable.createConsumer(WEBSOCKET_HOST);
+ sendMessage = (message) => {
+   console.warn(`Message ${message}`);
+ };
 
-cable.subscriptions.create('Channel', {
-// normal channel code goes here...
-});
+  received = (data) => {
+    console.log(`Received Data: ${data}`);
+  };
+
+  connected = () => {
+    console.log(`Connected!`);
+  };
+
+  disconnected = () => {
+    console.warn(`Disconnected!`);
+  };
+
+  rejected = () => {
+    console.warn('I was rejected! :(');
+  };
+}
+
+export default actionCable;
