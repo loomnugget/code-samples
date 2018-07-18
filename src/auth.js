@@ -14,6 +14,7 @@ export const saveAuthHeaders = headers => {
   headers.forEach((value, key) => {
     authHeaders[key] = value;
   });
+
   // console.log('authHeaders', authHeaders)
   localStorage.setItem(authHeadersStorageKey, JSON.stringify(authHeaders));
 };

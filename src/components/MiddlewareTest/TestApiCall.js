@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import actionCable from '../../cable';
 import Notification from '../Notifications/Notification';
 import PrimaryButton from '../Buttons/PrimaryButton';
 
 class TestApiCall extends Component {
-  constructor() {
-    super();
-    this.cable = new actionCable();
-
-  }
   handleCallApi = () => {
     const { retrieveUsers } = this.props;
     retrieveUsers()
     .then(() => {})
     .catch(() => {});
-  }
-
-  handleTestCable = () => {
-    console.log('cable', this.cable)
   }
 
   render () {
@@ -34,7 +24,6 @@ class TestApiCall extends Component {
           onClick={() => this.handleCallApi()}
         />
 
-        <PrimaryButton text="Test Action Cable" onClick={() => this.handleTestCable()}/>
       </div>
     );
   }

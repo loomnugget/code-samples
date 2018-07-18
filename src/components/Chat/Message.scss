@@ -1,0 +1,12 @@
+.message {
+  display: inline-block;
+  width: 100%;
+  background-color: $color1;
+  color: $brand-white;
+  border-radius: 15px;
+  padding: .5em;
+
+  .text {
+    padding: 0 1em;
+  }
+}

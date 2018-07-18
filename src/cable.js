@@ -1,20 +1,32 @@
 import ActionCable from 'actioncable';
+import { loadAuthHeaders } from './auth';
 import config from './config';
-
-// const cable = ActionCable.createConsumer(config.WEBSOCKET_HOST);
 
 class actionCable {
   constructor() {
-    this.cable = ActionCable.createConsumer(config.WEBSOCKET_HOST);
-    this.channel = this.cable.subscriptions.create('ChatChannel');
- }
+    const headers = loadAuthHeaders();
+    const token = headers["access-token"];
+    this.cable = ActionCable.createConsumer(`${config.WEBSOCKET_HOST}?token=${token}`);
+  }
 
- sendMessage = (message) => {
-   console.warn(`Message ${message}`);
- };
+  subscribe = () => {
+    this.channel = this.cable.subscriptions.create(
+      { channel: 'ChatChannel' }, {
+        connected: this.connected,
+        disconnected: this.disconnected,
+        received: this.received,
+        rejected: this.rejected,
+        send_message: this.send_message
+      }
+    );
+  };
+
+  send_message = (message) => {
+    this.channel.perform('send_message', { body: message });
+  };
 
   received = (data) => {
-    console.log(`Received Data: ${data}`);
+    this.channel.perform('received', { body: data });
   };
 
   connected = () => {
@@ -22,11 +34,11 @@ class actionCable {
   };
 
   disconnected = () => {
-    console.warn(`Disconnected!`);
+    console.log(`Disconnected!`);
   };
 
   rejected = () => {
-    console.warn('I was rejected! :(');
+    console.log('I was rejected! :(');
   };
 }
 

@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom';
 import LogoutButton from '../Buttons/LogoutButton';
 import MiddlewareTest from '../MiddlewareTest/MiddlewareTest';
 import Home from '../Home';
+import Chat from '../Chat/Chat';
 import css from './Main.scss';
 
 class Main extends Component {
@@ -30,12 +31,14 @@ class Main extends Component {
 
   render () {
     const { match } = this.props;
+    
     return (
       <div className={css.main}>
         <div className={css.mainNavigation}>
           <p className={css.item}> Navigation </p>
           <Link className={css.item} to={`${match.url}/home`}>Home</Link>
           <Link className={css.item} to={`${match.url}/api-middleware`}>API Middleware</Link>
+          <Link className={css.item} to={`${match.url}/chat`}> Chat </Link>
           <div className={css.btn}>
             <LogoutButton text="Logout" onClick={() => this.handleLogout()}/>
           </div>
@@ -43,6 +46,7 @@ class Main extends Component {
 
         <Route path={`${match.url}/home`} component={Home}/>
         <Route path={`${match.url}/api-middleware`} component={MiddlewareTest}/>
+        <Route path={`${match.url}/chat`} component={Chat}/>
       </div>
     );
   }
