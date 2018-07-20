@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
-import { logOutUser } from '../../actions/authActions';
-import { userAuthenticated } from '../../selectors/authSelectors';
+import { logOutUser, clearAuthError } from '../../actions/authActions';
+import { isAuthenticating, userAuthenticated, authError } from '../../selectors/authSelectors';
 import Main from './Main';
 
-const mapStateToProps = state => {
-  return {
-    authenticated: userAuthenticated(state)
-  };
-};
+const mapStateToProps = state => ({
+  isAuthenticating: isAuthenticating(state),
+  authenticated: userAuthenticated(state),
+  authError: authError(state)
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logOut: () => dispatch(logOutUser())
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  logOut: () => dispatch(logOutUser()),
+  clearError: () => dispatch(clearAuthError())
+});
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 

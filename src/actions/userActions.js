@@ -1,5 +1,4 @@
 export const SIGN_UP_USER = 'SIGN_UP_USER';
-
 export const signUpUser = userData => dispatch => (
   dispatch({
     type: 'callAPI',
@@ -13,7 +12,6 @@ export const signUpUser = userData => dispatch => (
 );
 
 export const UPDATE_USER = 'UPDATE_USER';
-
 export const updateUser = (userId, userData) => dispatch => (
   dispatch({
     type: 'callAPI',
@@ -27,7 +25,6 @@ export const updateUser = (userId, userData) => dispatch => (
 );
 
 export const RETRIEVE_USERS = 'RETRIEVE_USERS';
-
 export const retrieveUsers = () => dispatch => (
   dispatch({
     type: 'callAPI',
@@ -36,3 +33,8 @@ export const retrieveUsers = () => dispatch => (
     method: 'GET'
   })
 );
+
+export const CLEAR_USER_ERROR = 'CLEAR_USER_ERROR';
+export const clearUserError = () => ({
+  type: CLEAR_USER_ERROR
+});

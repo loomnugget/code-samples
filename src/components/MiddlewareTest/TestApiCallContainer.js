@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-
-import { retrieveUsers } from '../../actions/userActions';
-import { clearAPIError } from '../../actions/apiActions';
+import { userError, isLoading, getUsers } from '../../selectors/userSelectors';
+import { retrieveUsers, clearUserError } from '../../actions/userActions';
 import TestApiCall from './TestApiCall';
 
 const mapDispatchToProps = dispatch => ({
   retrieveUsers: () => dispatch(retrieveUsers()),
-  clearError: () => dispatch(clearAPIError())
+  clearError: () => dispatch(clearUserError())
 });
 
 const mapStateToProps = state => ({
-  error: state.api.error,
-  isLoading: state.api.isLoading
+  error: userError(state),
+  isLoading: isLoading(state),
+  users: getUsers(state)
 });
 
 const TestApiCallContainer = connect(mapStateToProps, mapDispatchToProps)(TestApiCall);

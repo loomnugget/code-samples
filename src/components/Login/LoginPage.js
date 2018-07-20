@@ -5,7 +5,7 @@ import css from './LoginPage.scss';
 
 class LoginPage extends Component {
   render () {
-    return(
+    return (
       <div className={css.overlay}>
         <div className={css.content}>
           <div className={css.loginPage}>

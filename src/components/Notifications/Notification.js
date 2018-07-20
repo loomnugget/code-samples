@@ -3,6 +3,12 @@ import { PropTypes } from 'prop-types';
 import css from './Notification.scss';
 
 class Notification extends Component {
+  static propTypes = {
+    isLoading: PropTypes.bool,
+    error: PropTypes.string,
+    clearError: PropTypes.func
+  };
+  
   handleClearError = () => this.props.clearError();
 
   render () {
@@ -25,11 +31,5 @@ class Notification extends Component {
     } else return null;
   }
 }
-
-Notification.propTypes = {
-  isLoading: PropTypes.bool,
-  error: PropTypes.string,
-  clearError: PropTypes.func
-};
 
 export default Notification;

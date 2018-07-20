@@ -50,6 +50,12 @@ export default (state = initialState, action) => {
         isLoading: false
       };
 
+    case `${userActions.CLEAR_USER_ERROR}`:
+      return {
+        ...initialState,
+        error: null
+      };
+
     default:
       return state;
   }

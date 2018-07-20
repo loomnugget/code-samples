@@ -22,6 +22,6 @@ export const downloadCSVFailure = error => ({
 
 export const downloadTestCSV = () => ({
   type: 'csvDownload',
-  endpoint: `reporting/export_clients`,
-  filename: `clients.csv`
+  endpoint: `api/csv`,
+  filename: `test.csv`
 });

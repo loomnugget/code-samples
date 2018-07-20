@@ -1,18 +1,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
-import api from './apiReducer';
 import downloads from './downloadsReducer';
 import auth from './authReducer';
-import clients from './clientsReducer';
 import users from './usersReducer';
+import messages from './messagesReducer';
 
 const rootReducer = combineReducers({
-  api,
   downloads,
   auth,
-  clients,
   users,
+  messages,
   form: formReducer,
   routing: routerReducer
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-
+import requiresAuth from './AuthWrapper';
 import PublicHomePage from './Public/PublicHomePage';
 import MainContainer from './Main/MainContainer';
 import LoginPage from './Login/LoginPage';
@@ -18,7 +18,7 @@ class App extends Component {
         <Route exact path='/login' component={LoginPage}/>
         <Route exact path='/sign_up' component={SignUpPage}/>
         <Route exact path='/sign_up/:user_id/success' component={SignUpSuccessPage}/>
-        <Route path='/main' component={MainContainer}/>
+        <Route path='/main' component={requiresAuth(MainContainer)}/>
       </div>
     );
   }
