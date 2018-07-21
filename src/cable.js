@@ -9,7 +9,6 @@ import config from './config';
 // App.cable.connect() (websocket API - connection.open())
 class actionCable {
   constructor() {
-    // TODO: make a request to the server to get a proper token before subscribing
     const headers = loadAuthHeaders();
     const token = headers["access-token"];
     const uid = headers["uid"];
@@ -30,13 +29,13 @@ class actionCable {
   // Recieved is a method defined on ActionCable::Connection::Base
   // Decodes WebSocket messages and dispatches them to subscribed channels.
   // WebSocket message transfer encoding is always JSON.
-  subscribe = () => {
+  subscribe = (connected, disconnected, received, rejected) => {
     this.channel = this.cable.subscriptions.create(
       { channel: 'ChatChannel' }, {
-        connected: this.connected,
-        disconnected: this.disconnected,
-        received: this.received,
-        rejected: this.rejected,
+        connected: connected,
+        disconnected: disconnected,
+        received: received,
+        rejected: rejected,
         sendMessage: this.sendMessage
       }
     );
@@ -51,11 +50,6 @@ class actionCable {
   };
 
   // Connected, disconnected, recieved and rejected are all callbacks defined by AcionCable
-  received = (data) => {
-    // should dispatch an action when new data is received to update the state - put this in middleware
-    console.log("RECEIVED", data);
-  };
-
   connected = () => {
     console.log(`Connected!`);
   };

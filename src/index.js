@@ -12,7 +12,7 @@ require('./assets/stylesheets/_styles.scss');
 export const store = configureStore();
 
 render(
-  <Provider store={store} >
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>

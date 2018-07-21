@@ -1,33 +1,22 @@
-import ActionCable from 'actioncable';
-import { loadAuthHeaders } from '../auth';
-import config from '../config';
- import * as actions from '../actions/websocketActions';
+import actionCable from '../cable';
+import * as actions from '../actions/websocketActions';
+const cable = new actionCable();
+console.log('cable', cable);
 
 export default () => next => action => {
   if (action.type !== "websocket") return next(action);
 
-  const headers = loadAuthHeaders();
-  const token = headers["access-token"];
-  const uid = headers["uid"];
-  const client = headers["client"];
+  const connected = () => next(actions.ready());
+  const disconnected = () => next(actions.disconnected());
+  const rejected = () => next(actions.failed());
+  const messageReceived = () => next(actions.messageReceived(action.payload));
 
-  const url = `${config.WEBSOCKET_HOST}?token=${token}&uid=${uid}&client=${client}`;
-  const cable = ActionCable.createConsumer(url);
-
-  const channel = cable.subscriptions.create(
-    { channel: 'ChatChannel' }, {
-      connected: () => next(actions.ready()),
-      disconnected: () => next(actions.disconnected()),
-      received: (data) => next(actions.messageReceived(data)),
-      rejected: () => next(actions.failed()),
-      sendMessage: function (message) {
-        console.log(this.perform('send_message', { body: message }));
-      }
-    }
-  );
+  if (action.request_type === actions.CREATE_WEBSOCKET_CONNECTION) {
+    cable.subscribe(connected, disconnected, messageReceived, rejected);
+  }
 
   if (action.request_type === actions.SEND_MESSAGE) {
-    channel.sendMessage(action.payload);
-    return next(actions.messageSent());
+    next(actions.messageSent());
+    cable.sendMessage(action.payload);
   }
 };

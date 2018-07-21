@@ -1,5 +1,4 @@
 
-
 export const getResults = state => state.websocket.results;
 
 export const isConnecting = state => state.websocket.isConnecting;

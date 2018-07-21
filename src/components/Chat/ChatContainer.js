@@ -13,11 +13,13 @@ const mapStateToProps = state => ({
   disconnected: disconnected(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  createConnection: () => dispatch(createConnection()),
-  retrieveMessages: () => dispatch(retrieveMessages()),
-  sendMessage: (message) => dispatch(sendMessage(message))
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createConnection: () => dispatch(createConnection()),
+    retrieveMessages: () => dispatch(retrieveMessages()),
+    sendMessage: (message) => dispatch(sendMessage(message))
+  };
+};
 
 const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(Chat);
 
