@@ -4,15 +4,9 @@ import Notification from '../Notifications/Notification';
 import PrimaryButton from '../Buttons/PrimaryButton';
 
 class TestApiCall extends Component {
-  handleCallApi = () => {
-    const { retrieveUsers } = this.props;
-    retrieveUsers()
-    .then(() => {})
-    .catch(() => {});
-  }
-
   render () {
-    const { isLoading, error, clearError } = this.props;
+    const { retrieveUsers, isLoading, error, clearError } = this.props;
+    
     return (
       <div>
         <Notification isLoading={isLoading} error={error} clearError={clearError}/>
@@ -21,7 +15,7 @@ class TestApiCall extends Component {
           color="blue"
           disabled={isLoading}
           text="Test Api Call"
-          onClick={() => this.handleCallApi()}
+          onClick={() => retrieveUsers()}
         />
 
       </div>

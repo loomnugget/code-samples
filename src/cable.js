@@ -52,6 +52,7 @@ class actionCable {
 
   // Connected, disconnected, recieved and rejected are all callbacks defined by AcionCable
   received = (data) => {
+    // should dispatch an action when new data is received to update the state - put this in middleware
     console.log("RECEIVED", data);
   };
 

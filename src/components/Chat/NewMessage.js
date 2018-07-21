@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './NewMessage.scss';
 
-const NewMessage = props => {
-  const { onSubmit } = props;
+class NewMessage extends Component {
+  state = {
+    message: ''
+  }
 
-  const handleSend = e => {
+  handleChange = e => this.setState({ message: e.target.value })
+
+  handleSend = e => {
     const newMessage = e.target.value;
-
+    
     if (e.key == 'Enter') {
-      onSubmit(newMessage);
+      this.props.onSubmit(newMessage);
+      this.setState({ message: '' });
     }
   };
 
-  return (
-    <input
-      className={css.newMessageInput}
-      type="text"
-      onKeyPress={e => handleSend(e)}
-    />
-  );
-};
+  render () {
+
+    return (
+      <input
+        value={this.state.message}
+        className={css.newMessageInput}
+        type="text"
+        onKeyPress={this.handleSend}
+        onChange={this.handleChange}
+      />
+    );
+  }
+
+}
 
 
 NewMessage.propTypes = {
