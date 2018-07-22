@@ -2,7 +2,7 @@ import * as actions from '../actions/websocketActions';
 
 const initialState = {
   results: {},
-  failed: false,
+  rejected: false,
   disconnected: false,
   isConnecting: false,
   connectionOpen: false
@@ -28,16 +28,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         disconnected: true,
-        isConnecting: false,
         connectionOpen: false
       };
     }
 
-    case `${actions.MESSAGE_RECEIVED}`: {
+    case `${actions.CONNECTION_REJECTED}`: {
       return {
         ...state,
-        results: action.payload,
-        isConnecting: false
+        rejected: true,
+        disconnected: true,
+        isConnecting: false,
+        connectionOpen: false
       };
     }
 

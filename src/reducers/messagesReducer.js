@@ -1,4 +1,5 @@
 import * as messageActions from '../actions/messageActions';
+import { MESSAGE_RECEIVED } from '../actions/websocketActions';
 
 const initialState = {
   results: {},
@@ -8,6 +9,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case `${MESSAGE_RECEIVED}`: {
+      const message = action.payload;
+      return {
+        ...state,
+        results: {
+          ...state.results,
+          [message.id]: message
+        },
+      };
+    }
 
     case `${messageActions.RETRIEVE_MESSAGES}_REQUEST_START`:
       return {

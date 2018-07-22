@@ -5,6 +5,6 @@ export const isConnecting = state => state.websocket.isConnecting;
 
 export const connectionOpen = state => state.websocket.connectionOpen;
 
-export const connectionFailed = state => state.websocket.failed;
+export const connectionRejected = state => state.websocket.rejected;
 
 export const disconnected = state => state.websocket.disconnected;

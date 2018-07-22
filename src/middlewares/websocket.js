@@ -1,17 +1,20 @@
 import actionCable from '../cable';
 import * as actions from '../actions/websocketActions';
+
 const cable = new actionCable();
-console.log('cable', cable);
 
 export default () => next => action => {
   if (action.type !== "websocket") return next(action);
 
-  const connected = () => next(actions.ready());
+  // Standard action cable callbacks dispatch an action, so need to be
+  // passed into a cable instance's subscription
+  const connected = () => next(actions.connected());
   const disconnected = () => next(actions.disconnected());
-  const rejected = () => next(actions.failed());
-  const messageReceived = () => next(actions.messageReceived(action.payload));
+  const rejected = () => next(actions.rejected());
+  const messageReceived = (message) => next(actions.messageReceived(message));
 
   if (action.request_type === actions.CREATE_WEBSOCKET_CONNECTION) {
+    next(actions.connecting());
     cable.subscribe(connected, disconnected, messageReceived, rejected);
   }
 

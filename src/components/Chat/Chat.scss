@@ -27,6 +27,12 @@ $main-width: calc(100% - #{$sidebar-width});
     padding: 1em;
   }
 
+  .messages {
+    display: inline-block;
+    height: 300px;
+    overflow: scroll;
+  }
+
   .new-message {
     position: absolute;
     bottom: 0;
