@@ -6,12 +6,13 @@ import css from './Chat.scss';
 
 class Chat extends Component {
   static propTypes = {
-    messages: PropTypes.object.isRequired,
+    messages: PropTypes.array.isRequired,
     isConnecting: PropTypes.bool.isRequired,
     connectionOpen: PropTypes.bool.isRequired,
     connectionRejected: PropTypes.bool.isRequired,
     disconnected: PropTypes.bool.isRequired,
     createConnection: PropTypes.func.isRequired,
+    disconnect: PropTypes.func.isRequired,
     retrieveMessages: PropTypes.func.isRequired,
     sendMessage: PropTypes.func.isRequired
   }

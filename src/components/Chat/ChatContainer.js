@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { getMessages } from '../../selectors/messageSelectors';
 import { isConnecting, connectionOpen, connectionRejected, disconnected } from '../../selectors/websocketSelectors';
 import { retrieveMessages } from '../../actions/messageActions';
-import { createConnection, sendMessage } from '../../actions/websocketActions';
+import { createConnection, closeConnection, sendMessage } from '../../actions/websocketActions';
 import Chat from './Chat';
 
 const mapStateToProps = state => ({
@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     createConnection: () => dispatch(createConnection()),
+    disconnect: () => dispatch(closeConnection()),
     retrieveMessages: () => dispatch(retrieveMessages()),
     sendMessage: (message) => dispatch(sendMessage(message))
   };

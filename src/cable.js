@@ -48,19 +48,6 @@ class actionCable {
   sendMessage = (message) => {
     this.channel.perform('send_message', { body: message });
   };
-
-  // Connected, disconnected, recieved and rejected are all callbacks defined by AcionCable
-  connected = () => {
-    console.log(`Connected!`);
-  };
-
-  disconnected = () => {
-    console.log(`Disconnected!`);
-  };
-
-  rejected = () => {
-    console.log('I was rejected! :(');
-  };
 }
 
 export default actionCable;
