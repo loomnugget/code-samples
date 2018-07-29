@@ -1,6 +1,6 @@
 export const getAuth = state => state.auth;
 
-export const getUser = state => state.auth.user;
+export const getCurrentUser = state => state.auth.currentUser;
 
 export const authError = state => state.auth.error;
 

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Link } from 'react-router-dom';
 import { removeAuthHeaders } from '../../auth';
-import Notification from '../Notifications/Notification';
 import LogoutButton from '../Buttons/LogoutButton';
-import MiddlewareTest from '../MiddlewareTest/MiddlewareTest';
+import DownloadsPage from '../Downloads/DownloadsPage';
 import Home from '../Home';
 import ChatContainer from '../Chat/ChatContainer';
+import ProfileContainer from '../Profile/ProfileContainer';
 import css from './Main.scss';
 
 class Main extends Component {
@@ -14,7 +14,6 @@ class Main extends Component {
     logOut: PropTypes.func.isRequired,
     isAuthenticating: PropTypes.bool.isRequired,
     authenticated: PropTypes.bool.isRequired,
-    authError: PropTypes.string,
     clearError: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
@@ -26,7 +25,10 @@ class Main extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.authenticated) history.push('/login');
+    if(!nextProps.authenticated) {
+      console.log('not authenticated');
+      history.push('/login');
+    }
   }
 
   handleLogout = (e) => {
@@ -42,28 +44,28 @@ class Main extends Component {
   }
 
   render () {
-    const { match, isAuthenticating, authenticated, authError, clearError } = this.props;
+    const { match, isAuthenticating } = this.props;
 
     return (
       <div className={css.main}>
         <div className={css.mainNavigation}>
           <p className={css.item}> Navigation </p>
           <Link className={css.item} to={`${match.url}/home`}>Home</Link>
-          <Link className={css.item} to={`${match.url}/api-middleware`}>API Middleware</Link>
+          <Link className={css.item} to={`${match.url}/profile`}>Profile</Link>
+          <Link className={css.item} to={`${match.url}/downloads`}>Downloads</Link>
           <Link className={css.item} to={`${match.url}/chat`}> Chat </Link>
           <div className={css.btn}>
             <LogoutButton
               text="Logout"
-              disabled={isAuthenticating || !authenticated}
+              disabled={isAuthenticating}
               onClick={this.handleLogout}
             />
           </div>
         </div>
 
-        <Notification isLoading={isAuthenticating} error={authError} clearError={clearError}/>
-
         <Route path={`${match.url}/home`} component={Home}/>
-        <Route path={`${match.url}/api-middleware`} component={MiddlewareTest}/>
+        <Route path={`${match.url}/profile`} component={ProfileContainer}/>
+        <Route path={`${match.url}/downloads`} component={DownloadsPage}/>
         <Route path={`${match.url}/chat`} component={ChatContainer}/>
       </div>
     );

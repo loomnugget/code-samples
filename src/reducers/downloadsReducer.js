@@ -1,4 +1,4 @@
-import * as downloadActions from '../actions/csvActions';
+import * as downloadActions from '../actions/downloadActions';
 
 const initialState = {
   error: null,
@@ -7,28 +7,28 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case downloadActions.DOWNLOAD_CSV_REQUEST:
+    case downloadActions.DOWNLOAD_REQUEST:
       return {
         ...state,
         error: null,
         isLoading: true
       };
 
-    case downloadActions.DOWNLOAD_CSV_SUCCESS:
+    case downloadActions.DOWNLOAD_SUCCESS:
       return {
         ...state,
         error: null,
         isLoading: false
       };
 
-    case downloadActions.DOWNLOAD_CSV_FAILURE:
+    case downloadActions.DOWNLOAD_FAILURE:
       return {
         ...state,
         error: action.error,
         isLoading: false
       };
 
-    case downloadActions.CLEAR_ERROR_MESSAGE:
+    case downloadActions.CLEAR_DOWNLOADS_ERROR_MESSAGE:
       return {
         ...state,
         error: null,

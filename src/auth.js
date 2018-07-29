@@ -1,4 +1,5 @@
 const authHeadersStorageKey = 'auth_headers';
+const authHeaderKeys = ['access-token', 'client', 'expiry', 'token-type', 'uid'];
 
 export const loadAuthHeaders = () => {
   return JSON.parse(sessionStorage.getItem(authHeadersStorageKey)) || {};
@@ -15,7 +16,7 @@ export const saveAuthHeaders = headers => {
     authHeaders[key] = value;
   });
 
-  // console.log('authHeaders', authHeaders)
+  // console.log('authHeaders', authHeaders);
   sessionStorage.setItem(authHeadersStorageKey, JSON.stringify(authHeaders));
 };
 
@@ -23,10 +24,12 @@ export const removeAuthHeaders = () => {
   sessionStorage.removeItem(authHeadersStorageKey);
 };
 
-// export const removeHeaderKeys = () => {
-//   const authHeaders = loadAuthHeaders();
-//   userAuthHeaderKeys.every(key => {
-//     return delete authHeaders[key];
-//   });
-//   sessionStorage.setItem(authHeadersStorageKey, JSON.stringify(authHeaders));
-// };
+export const removeHeaderKeys = () => {
+  const authHeaders = loadAuthHeaders();
+  authHeaderKeys.every(key => {
+    console.log('key', key);
+    return delete authHeaders[key];
+  });
+
+  sessionStorage.setItem(authHeadersStorageKey, JSON.stringify(authHeaders));
+};

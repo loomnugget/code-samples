@@ -1,6 +1,8 @@
 import actionCable from '../cable';
+// import { loadAuthHeaders } from '../auth';
 import * as actions from '../actions/websocketActions';
 
+// const headers = loadAuthHeaders();
 const cable = new actionCable();
 
 export default () => next => action => {
@@ -14,7 +16,6 @@ export default () => next => action => {
   const messageReceived = (message) => next(actions.messageReceived(message));
 
   if (action.request_type === actions.CREATE_WEBSOCKET_CONNECTION) {
-    next(actions.connecting());
     cable.subscribe(connected, disconnected, messageReceived, rejected);
   }
 

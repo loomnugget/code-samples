@@ -2,6 +2,7 @@ import { AUTHENTICATE_USER, LOG_OUT_USER, CLEAR_AUTH_ERROR } from '../actions/au
 import { hasAuthHeaders } from '../auth';
 
 const initialState = {
+  currentUser: null,
   authenticated: hasAuthHeaders(),
   isAuthenticating: false,
   error: null
@@ -10,20 +11,21 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case `${AUTHENTICATE_USER}_REQUEST_START`:
-    case `${LOG_OUT_USER}_REQUEST_START`:
       return {
         ...state,
         error: null,
         isAuthenticating: true
       };
 
-    case `${AUTHENTICATE_USER}_REQUEST_SUCCESS`:
+    case `${AUTHENTICATE_USER}_REQUEST_SUCCESS`: {
       return {
         ...state,
+        currentUser: action.payload.data,
         error: null,
         isAuthenticating: false,
         authenticated: true
       };
+    }
 
     case `${AUTHENTICATE_USER}_REQUEST_FAILURE`:
       return {
@@ -35,14 +37,15 @@ export default (state = initialState, action) => {
 
     case `${LOG_OUT_USER}_REQUEST_SUCCESS`:
       return {
-        ...initialState,
+        ...state,
+        currentUser: null,
         isAuthenticating: false,
         authenticated: false
       };
 
     case `${CLEAR_AUTH_ERROR}`:
       return {
-        ...initialState,
+        ...state,
         error: null
       };
 

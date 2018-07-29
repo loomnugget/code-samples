@@ -1,4 +1,7 @@
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+export const LOG_OUT_USER = 'LOG_OUT_USER';
+export const CLEAR_AUTH_ERROR = 'CLEAR_AUTH_ERROR';
+
 export const authenticateUser = (email, password) => dispatch => (
   dispatch({
     type: 'callAPI',
@@ -12,7 +15,6 @@ export const authenticateUser = (email, password) => dispatch => (
   })
 );
 
-export const LOG_OUT_USER = 'LOG_OUT_USER';
 export const logOutUser = () => dispatch => (
   dispatch({
     type: 'callAPI',
@@ -22,7 +24,6 @@ export const logOutUser = () => dispatch => (
   })
 );
 
-export const CLEAR_AUTH_ERROR = 'CLEAR_AUTH_ERROR';
 export const clearAuthError = () => ({
   type: CLEAR_AUTH_ERROR
 });

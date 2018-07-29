@@ -10,12 +10,13 @@ import config from './config';
 class actionCable {
   constructor() {
     const headers = loadAuthHeaders();
+
     const token = headers["access-token"];
     const uid = headers["uid"];
     const client = headers["client"];
 
     const url = `${config.WEBSOCKET_HOST}?token=${token}&uid=${uid}&client=${client}`;
-    this.cable = ActionCable.createConsumer(url);
+    this.cable = ActionCable.createConsumer(url, token);
   }
 
   // Actioncable package provides callbacks that are invoked when connection
@@ -41,6 +42,7 @@ class actionCable {
     );
   };
 
+  // disconnect = () => this.cable.disconnect();
   // Send(data), perform(action, data = {}), and unsubscribe() are all methods on Subscription
   // Defined here: https://github.com/rails/rails/blob/master/actioncable/app/assets/javascripts/action_cable/subscription.coffee
 

@@ -11,7 +11,7 @@ class NewMessage extends Component {
 
   handleSend = e => {
     const newMessage = e.target.value;
-    
+
     if (e.key == 'Enter') {
       this.props.onSubmit(newMessage);
       this.setState({ message: '' });
@@ -25,6 +25,7 @@ class NewMessage extends Component {
         value={this.state.message}
         className={css.newMessageInput}
         type="text"
+        placeholder="New message..."
         onKeyPress={this.handleSend}
         onChange={this.handleChange}
       />
