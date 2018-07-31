@@ -12,11 +12,18 @@ React/Redux boilerplate frontend designed for use with a Rails api that leverage
 
 ## API Action Types 
 ### Action Types
-` `${request_type}_REQUEST_START`, `${request_type}_REQUEST_SUCCESS`, `${request_type}_REQUEST_FAILURE` `
+`REQUEST_TYPE_REQUEST_START, REQUEST_TYPE_REQUEST_SUCCESS, REQUEST_TYPE_REQUEST_FAILURE`
 
 ### Example usage
-#### Actions that make api calls must have a type of "callAPI"
-`export const signUpUser = userData => dispatch => (
+Actions that make api calls must have the following:
+1. type: 'callAPI' 
+2. a unique request_type that will dispatch the above actions
+3. endpoint
+4. method 
+5. body (optional)
+
+```
+export const signUpUser = userData => dispatch => (
   dispatch({
     type: 'callAPI',
     request_type: SIGN_UP_USER,
@@ -26,19 +33,26 @@ React/Redux boilerplate frontend designed for use with a Rails api that leverage
       user: userData
     }
   })
-);`
+);
+```
 
 
 ## File Downloads
 ### Action Types
-` CLEAR_DOWNLOADS_ERROR_MESSAGE, DOWNLOAD_REQUEST, DOWNLOAD_SUCCESS, DOWNLOAD_FAILURE`
+`CLEAR_DOWNLOADS_ERROR_MESSAGE, DOWNLOAD_REQUEST, DOWNLOAD_SUCCESS, DOWNLOAD_FAILURE`
 
 ### Example usage
-#### Actions that make api calls must have a type of "download"
-`export const downloadTestCSV = () => dispatch => (
+Actions that download files from the server must have the following:
+1. type: 'download' 
+2. endpoint
+3. filename
+
+```
+export const downloadTestCSV = () => dispatch => (
   dispatch({
     type: 'download',
     endpoint: 'api/users/export_csv',
     filename: 'filename.csv'
   })
-);`
+);
+```
