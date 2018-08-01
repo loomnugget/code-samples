@@ -57,7 +57,7 @@ export const signUpUser = userData => dispatch => (
 ```
 
 The middleware will handle the server response dispatch the following actions:
-`SIGN_UP_USER_REQUEST_START, SIGN_UP_USERE_REQUEST_SUCCESS, SIGN_UP_USER_REQUEST_FAILURE`
+`SIGN_UP_USER_REQUEST_START, SIGN_UP_USER_REQUEST_SUCCESS, SIGN_UP_USER_REQUEST_FAILURE`
 
 ## File Downloads
 ### Action Types
@@ -131,6 +131,10 @@ import LinkButton from '../Buttons/LinkButton';
 ### Form Field
 Form field component for use with Redux Form. Will display field level validation errors.
 
+Required props: label, type, input, and meta
+
+Optional prop: placeholder
+
 ```
 import FormField from '../Forms/FormField';
 
@@ -138,6 +142,7 @@ import FormField from '../Forms/FormField';
   name="Test"
   label="Test"
   type="text"
+  placeholder="Optional Placeholder"
   component={FormField}
   validate={required}
 />
@@ -146,10 +151,22 @@ import FormField from '../Forms/FormField';
 ## Notifications
 
 ### Form Notification
-TODO
+For use in redux form to display form validation/submitting errors. Pass in an error message to display if necessary.
+
+```
+import FormNotification from '../Notifications/FormNotification';
+
+{errorMessage && <FormNotification error={errorMessage} />}
+```
 
 ### API Notification
-TODO
+General notification to display API loading state and errors. If request pending from server, displays a loading notification, which changes to a red error message with option to clear if server returns an error. Props: isLoading, error, and clearError function 
+
+``` 
+import Notification from '../Notifications/Notification';
+
+<Notification isLoading={isLoading} error={error} clearError={clearError}/>
+```
 
 # TODO
 Note that this is designed to be full featured for immediate full stack app creation, and is currently in progress.
@@ -162,4 +179,6 @@ Note that this is designed to be full featured for immediate full stack app crea
 1. Sentry error logging middleware
 2. Search implementation
 3. Avatar upload integration 
+4. Analytics 
+5. Reporting visualization
 
