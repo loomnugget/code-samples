@@ -16,7 +16,7 @@ class actionCable {
     const client = headers["client"];
 
     const url = `${config.WEBSOCKET_HOST}?token=${token}&uid=${uid}&client=${client}`;
-    this.cable = ActionCable.createConsumer(url, token);
+    this.cable = ActionCable.createConsumer(url);
   }
 
   // Actioncable package provides callbacks that are invoked when connection

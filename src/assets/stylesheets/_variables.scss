@@ -8,14 +8,14 @@ $brand-success:         #2cc760 !default;
 $brand-light-grey:      #d9dee1;
 
 // Gradient1
-$brand-blue:             #4d95b2;
+$brand-blue:             #6fd6ff;
 $brand-light-green:      #BFF098;
 
 // Gradient2
 $color1:                 #00B7FF;
 $color2:                 #FFFFC7;
 
-$gradient1: linear-gradient(to right, #6fd6ff, $brand-light-green);
+$gradient1: linear-gradient(to right, $brand-blue, $brand-light-green);
 $gradient2: linear-gradient(to right, $color1, $color2);
 
 

@@ -11,7 +11,7 @@ class Profile extends Component {
     return (
       <div className={css.profile}>
         <Notification isLoading={isLoading} error={error} clearError={clearError}/>
-        <h3>Profile</h3>
+        <h1 className="title"> My Profile </h1>
         <p>{`${currentUser.first_name} ${currentUser.last_name}`}</p>
         <p>{`${currentUser.email}`}</p>
       </div>

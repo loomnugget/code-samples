@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import { removeAuthHeaders } from '../../auth';
 import LogoutButton from '../Buttons/LogoutButton';
 import DownloadsPage from '../Downloads/DownloadsPage';
@@ -49,11 +49,10 @@ class Main extends Component {
     return (
       <div className={css.main}>
         <div className={css.mainNavigation}>
-          <p className={css.item}> Navigation </p>
-          <Link className={css.item} to={`${match.url}/home`}>Home</Link>
-          <Link className={css.item} to={`${match.url}/profile`}>Profile</Link>
-          <Link className={css.item} to={`${match.url}/downloads`}>Downloads</Link>
-          <Link className={css.item} to={`${match.url}/chat`}> Chat </Link>
+          <NavLink className={css.item} activeClassName={css.active} to={`${match.url}/home`}>Home</NavLink>
+          <NavLink className={css.item} activeClassName={css.active} to={`${match.url}/profile`}>Profile</NavLink>
+          <NavLink className={css.item} activeClassName={css.active} to={`${match.url}/downloads`}>Downloads</NavLink>
+          <NavLink className={css.item} activeClassName={css.active} to={`${match.url}/chat`}> Chat </NavLink>
           <div className={css.btn}>
             <LogoutButton
               text="Logout"

@@ -23,7 +23,10 @@ export default function requiresAuth(Component) {
 
     checkAndRedirect = () => {
       const { authenticated, isAuthenticating, history } = this.props;
-      if (!isAuthenticating && !authenticated) history.replace('/login');
+
+      if (!isAuthenticating && !authenticated) {
+        history.replace('/login');
+      }
     }
 
     render() {

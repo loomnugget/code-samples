@@ -6,7 +6,8 @@ class DownloadsPage extends Component {
   render () {
     return(
       <div>
-        <h3> Download CSV </h3>
+        <h1 className="title"> Downloads </h1>
+        <p> Test downloading CSVs and PDFs. </p>
         <DownloadsContainer />
       </div>
     );

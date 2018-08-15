@@ -1,7 +1,6 @@
 import * as actions from '../actions/websocketActions';
 
 const initialState = {
-  results: {},
   rejected: false,
   disconnected: false,
   isConnecting: false,

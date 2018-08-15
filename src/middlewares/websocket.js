@@ -1,8 +1,6 @@
 import actionCable from '../cable';
-// import { loadAuthHeaders } from '../auth';
 import * as actions from '../actions/websocketActions';
 
-// const headers = loadAuthHeaders();
 const cable = new actionCable();
 
 export default () => next => action => {

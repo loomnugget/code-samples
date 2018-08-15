@@ -23,7 +23,7 @@ export const downloadFailure = error => ({
 export const downloadTestCSV = () => dispatch => (
   dispatch({
     type: 'download',
-    endpoint: `api/csv`,
+    endpoint: `api/users/export_csv`,
     filename: `test.csv`
   })
 );
@@ -31,7 +31,7 @@ export const downloadTestCSV = () => dispatch => (
 export const downloadTestPDF = () => dispatch => (
   dispatch({
     type: 'download',
-    endpoint: `api/v1/export_users`,
+    endpoint: `api/users/export_pdf`,
     filename: `test.pdf`
   })
 );

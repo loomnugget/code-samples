@@ -1,0 +1,10 @@
+@import './_generalBtnStyles.scss';
+
+.link-btn {
+  padding: 8px 20px;
+  background: $gradient1;
+
+  a {
+    color: $brand-white;
+  }
+}

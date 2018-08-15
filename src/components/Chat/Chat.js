@@ -18,11 +18,11 @@ class Chat extends Component {
   }
 
   componentWillMount() {
-    const { retrieveMessages } = this.props;
-    retrieveMessages();
-    // .then(() => {
-    //   createConnection();
-    // });
+    const { retrieveMessages, createConnection } = this.props;
+    retrieveMessages()
+    .then(() => {
+      createConnection();
+    });
   }
 
   componentDidMount() {

@@ -37,7 +37,6 @@ class Downloads extends Component {
               disabled={isLoading}
               text="Test CSV Download"
               onClick={this.handleDownloadCSV}
-
             />
           </div>
           <div className={css.btn}>

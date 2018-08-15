@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import LinkButton from '../Buttons/LinkButton';
 import css from './PublicHomePage.scss';
 
 class PublicHomePage extends Component {
@@ -9,7 +9,7 @@ class PublicHomePage extends Component {
         <h1 className={css.title}>
           Welcome! You don't need to be signed in to see this page.
         </h1>
-        <Link to='/login'> Login </Link>
+        <LinkButton path='/login' text="Login" />
       </div>
     );
   }
