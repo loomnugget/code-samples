@@ -11,7 +11,8 @@ import App from './components/App';
 require('./assets/stylesheets/_styles.scss');
 
 export const store = configureStore();
-
+// import('./singleDynamicImport')
+//     .then(module => module.handleImport());
 render(
   <Provider store={store}>
     <BrowserRouter>
