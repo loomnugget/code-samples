@@ -1,69 +1,20 @@
 import webpack from 'webpack';
-// import os from 'os';
-import path from 'path';
-// import CompressionPlugin from 'compression-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as plugins from './webpack.plugins';
+import * as loaders from './webpack.loaders';
+import UglifyJsPlugin from 'uglify-js-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
-// import UglifyJsPlugin from 'uglify-js-plugin';
-// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-
-// const GLOBALS = {
-//   'process.env.NODE_ENV': JSON.stringify('development'),
-// Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
-//   'process.env.DEV_HOSTNAME': JSON.stringify(os.hostname()),
-//   __DEV__: true
-// };
-// new webpack.DefinePlugin(GLOBALS),
-
-// Types of performance
-// 1. First time users -
-// 2. Frequent users
-
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import merge from 'webpack-merge';
+import path from 'path';
+// https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
 // Types of splitting with webpack
 // 1. Bundle Splitting - create more, smaller files (but load them all on each network request anyways) for better caching
 // split one large file into 2 files so the user only needs to download the file that changed
 // and the browser serves the other file from the cache
-// NOTE: this makes no difference to first time users since this relies on caching
+// this makes no difference to first time users since this relies on caching
 // 2. Code Splitting - dynamically load code so users only load code they need for that part of the site
-// const testPlugins = [
-//   new webpack.NamedModulesPlugin(),
-//   new webpack.HotModuleReplacementPlugin(),
-//   new webpack.NoEmitOnErrorsPlugin(),
-//   new BundleAnalyzerPlugin(),
-//   new CleanWebpackPlugin(['dist']),
-//   new HtmlWebpackPlugin({
-//     title: 'Caching',
-//     template: 'src/index.ejs',
-//     filename: 'index.html'
-//   }),
-//   new HtmlWebpackPlugin({ // Create HTML file that includes references to bundled CSS and JS.
-//     template: 'src/index.ejs',
-//     minify: {
-//       removeComments: true,
-//       collapseWhitespace: true
-//     },
-//     inject: true
-//   })
-// ];
-//
-// const productionConfig = merge([{
-//   optimization: {
-//     splitChunks: {
-//       cacheGroups: {
-//         commons: {
-//           test: /[\\/]node_modules[\\/]/,
-//           name: 'vendor',
-//           chunks: 'initial' // Initial = chunks that count towards the initial loading time
-//         },
-//       },
-//     },
-//   }
-// }]);
 
-export default {
-  // mode: 'production',
-  devtool: 'eval-source-map',
+const commonConfig = {
   entry: [
     './src/webpack-public-path',
     './src/index'
@@ -71,8 +22,7 @@ export default {
   target: 'web', // the environment in which the bundle should run
   output: {
     path: path.resolve(__dirname, 'build'),
-  //  path: `${__dirname}/build`, // Note: Physical files are only output by the production build task `npm run build`.
-    filename: '[name].[contenthash].js', // contenthash allows us to update cache as packages/files are updated
+    filename: '[name].[hash].js', // contenthash allows us to update cache as packages/files are updated
     publicPath: '/', // needed since we are using sourceMap style-loader
   },
   plugins: [
@@ -83,26 +33,6 @@ export default {
     }),
     new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
   ],
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      minSize: 0, // Webpack's default min file size is 30KB and a max 3 files when splitting output files
-      // cacheGroups: where we define rules for how Webpack should group chunks into output files
-      cacheGroups: {
-        vendor: { // vendor = any module loaded from node_modules
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            // get the name. E.g. node_modules/packageName/not/this/part.j or node_modules/packageName
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `npm.${packageName.replace('@', '')}`;
-          },
-        }
-      }
-    }
-  },
   module: {
     rules: [
       {
@@ -168,3 +98,68 @@ export default {
     ]
   }
 };
+
+const devConfig = merge(
+  commonConfig,
+  { mode: 'development' },
+  { devtool: 'eval-source-map' },
+  loaders.devServer({
+    host: process.env.host,
+    port: process.env.port,
+  })
+)
+
+const productionConfig = merge(
+  commonConfig,
+  { mode: 'production' },
+  { devtool: 'source-map' },
+  {
+    plugins: [
+      plugins.manifest,
+      plugins.environmentVariables,
+      plugins.loaderOptions,
+      plugins.manifest, // Add the manifest plugin
+      plugins.sw, // Add the sw-precache-webpack-plugin
+      plugins.copy
+    ]
+  },
+  {
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0, // Webpack's default min file size is 30KB and a max 3 files when splitting output files
+        // cacheGroups: where we define rules for how Webpack should group chunks into output files
+        cacheGroups: {
+          vendor: { // vendor = any module loaded from node_modules
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              // get the name. E.g. node_modules/packageName/not/this/part.j or node_modules/packageName
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              // npm package names are URL-safe, but some servers don't like @ symbols
+              return `npm.${packageName.replace('@', '')}`;
+            },
+          }
+        }
+      },
+      minimizer: [
+        // we specify a custom UglifyJsPlugin here to get source maps in production
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          uglifyOptions: {
+            compress: false,
+            ecma: 6,
+            mangle: true
+          },
+          sourceMap: true
+        })
+      ]
+    }
+  }
+);
+
+const finalConfig = process.env.NODE_ENV === 'production' ? productionConfig : devConfig;
+
+export default productionConfig;
