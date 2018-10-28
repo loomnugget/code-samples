@@ -3,12 +3,12 @@
   "name": "Claudia's Test App",
   "icons": [
     {
-      "src": "/images/darkbirds.jpg",
+      "src": "darkbirds.jpg",
       "type": "image/jpeg",
       "sizes": "512x512"
     }
   ],
-  "start_url": "/?source=pwa",
+  "start_url": "./index.html",
   "background_color": "#131313",
   "display": "standalone",
   "scope": "/",

@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-require('whatwg-fetch');
+import 'whatwg-fetch';
 // require('core-js/es6/map');
 // require('core-js/es6/set');
 // require('core-js/es6/string');

@@ -1,18 +1,7 @@
-import webpack from 'webpack';
 import * as plugins from './webpack.plugins';
 import * as loaders from './webpack.loaders';
-import UglifyJsPlugin from 'uglify-js-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import merge from 'webpack-merge';
 import path from 'path';
-// https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
-// Types of splitting with webpack
-// 1. Bundle Splitting - create more, smaller files (but load them all on each network request anyways) for better caching
-// split one large file into 2 files so the user only needs to download the file that changed
-// and the browser serves the other file from the cache
-// this makes no difference to first time users since this relies on caching
-// 2. Code Splitting - dynamically load code so users only load code they need for that part of the site
 
 const commonConfig = {
   entry: [
@@ -26,12 +15,9 @@ const commonConfig = {
     publicPath: '/', // needed since we are using sourceMap style-loader
   },
   plugins: [
-    new CleanWebpackPlugin('build'),
-    new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
-      inject: true
-    }),
-    new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
+    plugins.clean,
+    plugins.html,
+    plugins.hashedModules
   ],
   module: {
     rules: [
@@ -52,19 +38,26 @@ const commonConfig = {
           }
         }]
       },
-      // {
-      //   test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-      //   include: path.join(__dirname, 'src/assets'),
-      //   loader: 'file-loader'
-      // },
-      // {
-      //   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //   include: path.join(__dirname, 'src/assets'),
-      //   loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-      // },
-      // {test: /\.ttf(\?v=\d+.\d+.\d+)?$/, include: path.join(__dirname, 'src/assets'), loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
-      // {test: /\.svg(\?v=\d+.\d+.\d+)?$/, include: path.join(__dirname, 'src/assets'), loader: 'url-loader?limit=10000&mimetype=image/svg+xml'},
-
+      {
+        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+        include: path.join(__dirname, 'src/assets'),
+        loader: 'file-loader'
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        include: path.join(__dirname, 'src/assets'),
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.ttf(\?v=\d+.\d+.\d+)?$/,
+        include: path.join(__dirname, 'src/assets'),
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+      },
+      {
+        test: /\.svg(\?v=\d+.\d+.\d+)?$/,
+        include: path.join(__dirname, 'src/assets'),
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+      },
       { // Localized Component CSS/SCSS
         test: /(\.css|\.scss)$/,
         include: [/components/],
@@ -82,7 +75,7 @@ const commonConfig = {
       },
       { // Global SCSS
         test: /(\.css|\.scss)$/,
-        include: [/assets[\/\\]stylesheets/],
+        include: [/assets[\\]stylesheets/],
         use: [
           'style-loader',
           'css-loader?importLoaders=1&sourceMap',
@@ -107,7 +100,7 @@ const devConfig = merge(
     host: process.env.host,
     port: process.env.port,
   })
-)
+);
 
 const productionConfig = merge(
   commonConfig,
@@ -115,11 +108,10 @@ const productionConfig = merge(
   { devtool: 'source-map' },
   {
     plugins: [
-      plugins.manifest,
       plugins.environmentVariables,
       plugins.loaderOptions,
-      plugins.manifest, // Add the manifest plugin
-      plugins.sw, // Add the sw-precache-webpack-plugin
+      plugins.manifest,
+      plugins.serviceWorker,
       plugins.copy
     ]
   },
@@ -144,22 +136,12 @@ const productionConfig = merge(
         }
       },
       minimizer: [
-        // we specify a custom UglifyJsPlugin here to get source maps in production
-        new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
-          uglifyOptions: {
-            compress: false,
-            ecma: 6,
-            mangle: true
-          },
-          sourceMap: true
-        })
+        plugins.uglify
       ]
     }
   }
 );
 
-const finalConfig = process.env.NODE_ENV === 'production' ? productionConfig : devConfig;
+const webpackConfig = process.env.NODE_ENV === 'production' ? productionConfig : devConfig;
 
-export default productionConfig;
+export default webpackConfig;

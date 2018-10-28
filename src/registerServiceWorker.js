@@ -1,3 +1,4 @@
+// Source: https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
 // In production, we register a service worker to serve assets from local cache.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -8,10 +9,14 @@
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
+// A service worker is a script your browser runs in the background that PWAs use
+// for offline experience and periodic sync. To run our app in an offline environment,
+// we need to cache its static assets and find a solution to check the network status
+// and updates periodically
 export default function register () {
-  if (process.env.NODE_ENV === 'development' && 'serviceWorker' in navigator) {
+  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      const swUrl = 'service-worker.js';
+      const swUrl = './service-worker.js';
       navigator.serviceWorker
         .register(swUrl)
         .then(registration => {
