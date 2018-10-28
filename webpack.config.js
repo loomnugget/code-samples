@@ -135,13 +135,13 @@ const productionConfig = merge(
           }
         }
       },
-      minimizer: [
-        plugins.uglify
-      ]
+      // minimizer: [
+      //   plugins.uglify
+      // ]
     }
   }
 );
 
 const webpackConfig = process.env.NODE_ENV === 'production' ? productionConfig : devConfig;
 
-export default webpackConfig;
+export default productionConfig;

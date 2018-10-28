@@ -4,10 +4,10 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import UglifyJsPlugin from 'uglify-js-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 // import CompressionPlugin from 'compression-webpack-plugin';
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+// import UglifyJsPlugin from 'uglify-js-plugin';
 
 // HtmlWebpackPlugin generates an HTML file that includes all webpack
 // bundles in the script tags
@@ -17,7 +17,7 @@ export const html = new HtmlWebpackPlugin({
   // favicon: '',
   meta: {
     'charset': 'utf-8',
-    'viewport': 'width=device-width, initial-scale=1, shrink-to-fit=no', // Will generate: <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    'viewport': 'width=device-width, initial-scale=1', // Will generate: <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     'theme-color': '#ffffff', // Will generate: <meta name="theme-color" content="#4285f4">
     'author': 'Claudia Cedfeldt'
   },
@@ -31,16 +31,16 @@ export const hashedModules = new webpack.HashedModuleIdsPlugin();
 
 // Webpack 4 autmatically configures UglifyJsPlugin so no need to do this
 // we specify a custom UglifyJsPlugin here to get source maps in production
-export const uglify = new UglifyJsPlugin({
-  cache: true,
-  parallel: true,
-  uglifyOptions: {
-    compress: false,
-    ecma: 6,
-    mangle: true
-  },
-  sourceMap: true
-});
+// export const uglify = new UglifyJsPlugin({
+//   cache: true,
+//   parallel: true,
+//   uglifyOptions: {
+//     compress: false,
+//     ecma: 6,
+//     mangle: true
+//   },
+//   sourceMap: true
+// });
 
 export const loaderOptions = new webpack.LoaderOptionsPlugin({
   options: {
@@ -80,7 +80,7 @@ export const serviceWorker = new SWPrecacheWebpackPlugin({
     console.log(message);
   },
   minify: true, // minify and uglify the script
-  navigateFallback: '/index.html',
+  navigateFallback: 'src/index.html',
   staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
 });
 

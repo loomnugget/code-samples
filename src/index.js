@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import registerServiceWorker from './registerServiceWorker';
+import { registerServiceWorker } from '../registerServiceWorker';
 import App from './components/App';
 import configureStore from './configureStore';
 
@@ -28,4 +28,4 @@ render(
   document.getElementById('app')
 );
 
-registerServiceWorker();  // Runs register() as default function
+registerServiceWorker();

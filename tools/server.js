@@ -11,8 +11,7 @@ module.exports = {
     // Redirect HTTP to HTTPS
     app.use(function(req, res, next) {
       if (req.headers.hasOwnProperty('x-forwarded-proto') &&
-          req.headers['x-forwarded-proto'] !== 'https')
-      {
+          req.headers['x-forwarded-proto'] !== 'https') {
         res.redirect('https://' + req.hostname + req.originalUrl);
       }
       else {
@@ -21,6 +20,7 @@ module.exports = {
     });
 
     app.use(compression());
+    
     // Serve static files
     app.use(publicPath);
 
