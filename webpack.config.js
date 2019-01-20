@@ -5,6 +5,7 @@ import path from 'path';
 
 const commonConfig = {
   entry: [
+    'webpack-hot-middleware/client',
     './src/webpack-public-path',
     './src/index'
   ],
@@ -144,4 +145,4 @@ const productionConfig = merge(
 
 const webpackConfig = process.env.NODE_ENV === 'production' ? productionConfig : devConfig;
 
-export default productionConfig;
+export default webpackConfig;

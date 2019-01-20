@@ -12,9 +12,7 @@ export const devServer = function(options) {
 			contentBase: './client/dist',
 		},
 		plugins: [
-			new webpack.HotModuleReplacementPlugin({
-				multistep: true
-			})
+			new webpack.HotModuleReplacementPlugin()
 		],
 	};
 };

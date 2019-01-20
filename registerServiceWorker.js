@@ -24,8 +24,19 @@ export function registerServiceWorker () {
         console.log('ServiceWorker registration failed: ', err);
       });
     });
+
+    window.addEventListener('fetch', function(event) {
+      console.log(event.request.url);
+      event.respondWith(
+        caches.match(event.request).then(function(response) {
+          console.log('response', response)
+          return response || fetch(event.request);
+        })
+      );
+    });
   }
 }
+
 
 export function unregisterServiceWorker () {
   if ('serviceWorker' in navigator) {

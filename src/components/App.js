@@ -6,7 +6,7 @@ import MainContainer from './Main/MainContainer';
 import LoginPage from './Login/LoginPage';
 import SignUpPage from './SignUp/SignUpPage';
 import SignUpSuccessPage from './SignUp/SignUpSuccessPage';
-
+import { hot } from 'react-hot-loader/root'
 import css from './App.scss';
 
 class App extends Component {
@@ -24,4 +24,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default hot(App);
