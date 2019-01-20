@@ -1,5 +1,8 @@
-.map {
-  display: inline-block;
-  width: 500px;
-  height: 500px;
+@import '~ol/ol.css';
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }

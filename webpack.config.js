@@ -25,7 +25,7 @@ const commonConfig = {
       {
         test: /\.js$/,
         include: path.join(__dirname, 'src'),
-        exclude: /node_modules/,
+        exclude: /(node_modules.(?!ol))/,
         loader: 'babel-loader'
       },
       {
